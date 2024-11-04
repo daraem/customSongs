@@ -36,7 +36,7 @@ func check_world_scene():
 	boombox = get_node_or_null("/root/world/Viewport/main/entities/boombox")
 	
 	if boombox:
-
+		print("OLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
 		audio_player = boombox.get_node("./AudioStreamPlayer3D") 
 		print(audio_player)
 
@@ -52,16 +52,16 @@ func check_world_scene():
 
 func display_songs():
 	if panel_instance:
-
-		var song_container = panel_instance.get_node("Panel2/VBoxContainer")
+		var song_container = panel_instance.get_node("Panel2/ScrollContainer/VBoxContainer")
 		for child in song_container.get_children():
 			song_container.remove_child(child)
 			child.queue_free()
 		
-
 		for song in song_list:
 			var button = Button.new()
+
 			button.text = song
+			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			button.connect("pressed", self, "_on_button_pressed", [song])
 			song_container.add_child(button)
 
@@ -93,3 +93,4 @@ func _on_Interactable__activated():
 			panel_instance.queue_free()
 			panel_instance = null
 			visiblePanel = false
+
